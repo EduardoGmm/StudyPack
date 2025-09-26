@@ -3,7 +3,7 @@
 - Victor Hugo Borba Bento
 - Julia Forny de Souza Muniz
 - Eduardo Gomes De Moura
-- Bruno Luis Rocha Machado
+- Bruno Luis Rocha Machadinho
 - Carlos Eduardo Borba
 
 ## 📌 Objetivo
