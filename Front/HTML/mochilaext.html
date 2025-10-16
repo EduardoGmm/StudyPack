@@ -2,85 +2,72 @@
 <html lang="PT-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mochila de Erros</title>
     <link rel="stylesheet" href="../CSS/mochilaext.css" />
-    <!DOCTYPE html>
-    <html lang="pt-BR">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Mochilas com Menu Lateral</title>
-        <style></style>
-      </head>
-      <body>
-        <div class="container">
-          <nav class="sidebar">
-            <h2>Mochilas</h2>
-            <button id="btn-toggle-sidebar" style="background:none; border:none; color:#3b82f6; cursor:pointer; font-size:1.5rem; margin-bottom:1rem;">☰</button>
-            <div class="mochilas-list" id="mochilas-list">
-              <div class="mochila-item active" data-id="1">Mochila 1</div>
-            </div>
-            <button id="btn-nova-mochila">Criar Nova Mochila</button>
-          </nav>
-          <main class="mochila-area" id="mochila-area">
-            <div class="mochila-header">
-              <button class="btn" id="btn-nova-questao">
-                Criar Nova Questão
-              </button>
-              <button class="btn">Exercitar</button>
-            </div>
-            <div class="questoes-list" id="questoes-list"></div>
-          </main>
-        </div>
-        <!-- Modal para nova questão -->
-        <div class="modal" id="modal-nova-questao">
-          <div class="modal-content">
-            <h3>Criar Nova Questão</h3>
-            <label for="enunciado">Enunciado:</label>
-            <textarea id="enunciado" rows="3"></textarea>
-
-            <label for="imagem">Inserir imagem:</label>
-            <input type="file" id="imagem" accept="image/*" />
-
-            <label for="alternativas">Alternativas (separar por linha):</label>
-            <textarea
-              id="alternativas"
-              rows="4"
-              placeholder="Ex: A) ...&#10;B) ...&#10;C) ..."
-            ></textarea>
-
-            <label for="resposta">Resposta discursiva:</label>
-            <textarea id="resposta" rows="3"></textarea>
-
-            <div class="modal-buttons">
-              <button class="btn btn-cancel-questao" id="btn-cancel-questao">Cancelar</button>
-              <button class="btn" id="btn-salvar-questao">Salvar</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal" id="modal-nova-mochila">
-          <div class="modal-content">
-            <h3>Criar Nova Mochila</h3>
-            <label for="nome-mochila">Nome da Mochila:</label>
-            <input type="text" id="nome-mochila" />
-
-            <label for="tag">Tag:</label>
-            <input type="text" id="tag">
-
-            <label for="color">Cor:</label>
-            <input type="color" id="color" value="#0a659d" />
-
-            <div class="modal-buttons">
-              <button class="btn btn-cancel-mochila" id="btn-cancel-mochila">Cancelar</button>
-              <button class="btn" id="btn-salvar-mochila">Salvar</button>
-            </div>
-          </div>
-        </div>
-
-        <script src="../JS/mochila.js"></script>
-      </body>
-    </html>
   </head>
+  <body>
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Mochilas</h2>
+        <button id="btn-toggle-sidebar" style="background:none; border:none; color:#3b82f6; cursor:pointer; font-size:1.5rem; margin-bottom:1rem;">☰</button>
+        <div class="mochilas-list" id="mochilas-list">
+          <!-- Mochilas carregadas aqui via JS -->
+        </div>
+        <button id="btn-nova-mochila"><span>Criar Nova Mochila</span></button>
+      </nav>
+      <main class="mochila-area" id="mochila-area">
+        <div class="mochila-header">
+          <button class="btn" id="btn-nova-questao">Criar Novo Exercício</button>
+          <button class="btn">Exercitar</button>
+        </div>
+        <div class="exercicios-list" id="exercicios-list"></div>
+      </main>
+    </div>
+
+    <!-- Modal para nova questão -->
+    <div class="modal" id="modal-nova-questao">
+      <div class="modal-content">
+        <h3>Criar Nova Questão</h3>
+        <label for="enunciado">Enunciado:</label>
+        <textarea id="enunciado" rows="3"></textarea>
+
+        <label for="imagem">Inserir imagem:</label>
+        <input type="file" id="imagem" accept="image/*" />
+
+        <label for="alternativas">Alternativas (separar por linha):</label>
+        <textarea id="alternativas" rows="4" placeholder="Ex: A) ...&#10;B) ...&#10;C) ..."></textarea>
+
+        <label for="resposta">Resposta discursiva:</label>
+        <textarea id="resposta" rows="3"></textarea>
+
+        <div class="modal-buttons">
+          <button class="btn btn-cancel-questao" id="btn-cancel-questao">Cancelar</button>
+          <button class="btn" id="btn-salvar-questao">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para nova mochila -->
+    <div class="modal" id="modal-nova-mochila">
+      <div class="modal-content">
+        <h3>Criar Nova Mochila</h3>
+        <label for="nome-mochila">Nome da Mochila:</label>
+        <input type="text" id="nome-mochila" />
+
+        <label for="tag">Tag:</label>
+        <input type="text" id="tag" />
+
+        <label for="color">Cor:</label>
+        <input type="color" id="color" value="#0a659d" />
+
+        <div class="modal-buttons">
+          <button class="btn btn-cancel-mochila" id="btn-cancel-mochila">Cancelar</button>
+          <button class="btn" id="btn-salvar-mochila">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../JS/mochila.js"></script>
+  </body>
 </html>
