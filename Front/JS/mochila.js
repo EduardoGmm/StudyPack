@@ -17,15 +17,13 @@ let mochilas = [
   {
     id: 1,
     nome: "Mochila 1",
-    materias: [
-      { nome: "Matemática", questoes: [] },
-      { nome: "História", questoes: [] }
-    ]
+    cor: "#0a659d",
+    tag: "exemplo",
+    exercicios: []
   }
 ];
 
 let mochilaAtualId = 1;
-let materiaAtualNome = mochilas[0].materias[0].nome;
 
 // Renderiza lista de mochilas na sidebar
 function renderMochilas() {
@@ -34,82 +32,60 @@ function renderMochilas() {
     const div = document.createElement("div");
     div.classList.add("mochila-item");
     if (mochila.id === mochilaAtualId) div.classList.add("active");
-    div.textContent = mochila.nome;
+
+    // Coloca nome dentro de span para controle de visibilidade no colapsado
+    div.innerHTML = `<span>${mochila.nome}</span>`;
+    div.style.borderLeft = `6px solid ${mochila.cor ? mochila.cor : "#3b82f6"}`;
     div.dataset.id = mochila.id;
+    div.title = mochila.tag ? mochila.tag : "";
+
     div.addEventListener("click", () => {
       mochilaAtualId = mochila.id;
-      // Seleciona primeira matéria da mochila ao mudar de mochila
-      materiaAtualNome = mochila.materias.length > 0 ? mochila.materias[0].nome : null;
       renderMochilas();
-      renderMaterias();
+      renderExercicios();
     });
     mochilaList.appendChild(div);
   });
 }
 
-// Renderiza área principal com matérias e questões da matéria atual
-function renderMaterias() {
+// Renderiza exercícios da mochila selecionada
+function renderExercicios() {
   const mochila = mochilas.find(m => m.id === mochilaAtualId);
   mochilaArea.innerHTML = `
     <div class="mochila-header">
-      <button class="btn" id="btn-nova-questao">Criar Nova Questão</button>
+      <button class="btn" id="btn-nova-questao">Criar Novo Exercício</button>
     </div>
-    <div class="materias-list" style="margin-bottom: 1rem;">
-      ${mochila.materias.map(materia => `
-        <div class="materia-item" style="
-          cursor:pointer; 
-          padding:10px; 
-          border-radius:5px; 
-          background: ${materia.nome === materiaAtualNome ? '#3b82f6' : '#374151'};
-          color: #ddd;
-          margin-bottom: 5px;
-        ">${materia.nome}</div>
-      `).join("")}
+    <div class="exercicios-list" style="flex-grow: 1; overflow-y: auto;">
+      ${mochila.exercicios.length === 0 ? '<p style="color:#999;">Nenhum exercício criado nesta mochila.</p>' : ''}
+      ${mochila.exercicios.map((ex, i) => `
+        <div class="questao" data-index="${i}">
+          ${ex.enunciado.length > 100 ? ex.enunciado.slice(0, 100) + '...' : ex.enunciado}
+        </div>
+      `).join('')}
     </div>
-    <div class="questoes-list" id="questoes-list"></div>
   `;
 
-  // Adicionar evento para mudar matéria
-  const materiaItems = mochilaArea.querySelectorAll(".materia-item");
-  materiaItems.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      materiaAtualNome = mochila.materias[index].nome;
-      renderMaterias(); // Re-render para atualizar seleção e questões
+  // Eventos para abrir a questão em nova aba
+  const questoesElems = mochilaArea.querySelectorAll(".questao");
+  questoesElems.forEach(elem => {
+    elem.style.cursor = "pointer";
+    elem.addEventListener("click", () => {
+      const index = parseInt(elem.dataset.index);
+      const ex = mochila.exercicios[index];
+      const altUrl = ex.alternativas.map(a => encodeURIComponent(a)).join("|");
+      const imagemParam = ex.imagem ? encodeURIComponent(ex.imagem) : "";
+      const url = `questao.html?enunciado=${encodeURIComponent(ex.enunciado)}&alternativas=${altUrl}&imagem=${imagemParam}`;
+      window.open(url, "_blank");
     });
   });
 
-  // Evento para abrir modal nova questão
+  // Evento botão criar exercício abre modal
   document.getElementById("btn-nova-questao").addEventListener("click", () => {
     modal.classList.add("active");
   });
-
-  renderQuestoes();
 }
 
-// Renderiza questões da matéria atual
-function renderQuestoes() {
-  const mochila = mochilas.find(m => m.id === mochilaAtualId);
-  const materia = mochila.materias.find(mat => mat.nome === materiaAtualNome);
-  const questoesList = document.getElementById("questoes-list");
-  if (!questoesList) return;
-  questoesList.innerHTML = "";
-
-  materia.questoes.forEach(q => {
-    const div = document.createElement("div");
-    div.classList.add("questao");
-    div.textContent = `Questão: ${q.enunciado}`;
-    div.style.cursor = "pointer";
-    div.addEventListener("click", () => {
-      const altUrl = q.alternativas.map(a => encodeURIComponent(a)).join("|");
-      const url = `questao.html?enunciado=${encodeURIComponent(q.enunciado)}&alternativas=${altUrl}`;
-      window.open(url, "_blank");
-    });
-    questoesList.appendChild(div);
-  });
-}
-
-// Eventos dos botões
-
+// Botões nova mochila
 btnNovaMochila.addEventListener("click", () => {
   modalMochila.classList.add("active");
 });
@@ -120,6 +96,8 @@ btnCancelarMochila.addEventListener("click", () => {
 
 btnSalvarMochila.addEventListener("click", () => {
   const nomeMochila = document.getElementById("nome-mochila").value.trim();
+  const tag = document.getElementById("tag").value.trim();
+  const cor = document.getElementById("color").value;
   if (!nomeMochila) {
     alert("Por favor, preencha o nome da mochila.");
     return;
@@ -127,9 +105,13 @@ btnSalvarMochila.addEventListener("click", () => {
   mochilas.push({
     id: Date.now(),
     nome: nomeMochila,
-    materias: []
+    tag: tag,
+    cor: cor,
+    exercicios: []
   });
+  mochilaAtualId = mochilas[mochilas.length - 1].id;
   renderMochilas();
+  renderExercicios();
   modalMochila.classList.remove("active");
 
   document.getElementById("nome-mochila").value = "";
@@ -144,38 +126,48 @@ btnCancelar.addEventListener("click", () => {
 btnSalvar.addEventListener("click", () => {
   const enunciado = document.getElementById("enunciado").value.trim();
   const alternativasVal = document.getElementById("alternativas").value.trim();
+  const inputImagem = document.getElementById("imagem");
+
   if (!enunciado) {
-    alert("Por favor, preencha o enunciado da questão.");
-    return;
-  }
-  if (!materiaAtualNome) {
-    alert("Nenhuma matéria selecionada para adicionar a questão.");
+    alert("Por favor, preencha o enunciado do exercício.");
     return;
   }
 
   const alternativasArr = alternativasVal.split("\n").map(a => a.trim()).filter(Boolean);
-  
-  const mochila = mochilas.find(m => m.id === mochilaAtualId);
-  const materia = mochila.materias.find(mat => mat.nome === materiaAtualNome);
 
-  materia.questoes.push({
-    enunciado: enunciado,
-    alternativas: alternativasArr,
-  });
+  function salvarExercicio(base64Img) {
+    const mochila = mochilas.find(m => m.id === mochilaAtualId);
+    mochila.exercicios.push({
+      enunciado: enunciado,
+      alternativas: alternativasArr,
+      imagem: base64Img || null,
+    });
 
-  renderQuestoes();
+    renderExercicios();
 
-  document.getElementById("enunciado").value = "";
-  document.getElementById("alternativas").value = "";
-  document.getElementById("resposta").value = "";
-  document.getElementById("imagem").value = "";
-  modal.classList.remove("active");
+    document.getElementById("enunciado").value = "";
+    document.getElementById("alternativas").value = "";
+    document.getElementById("resposta").value = "";
+    document.getElementById("imagem").value = "";
+    modal.classList.remove("active");
+  }
+
+  if (inputImagem.files && inputImagem.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      salvarExercicio(evt.target.result);
+    };
+    reader.readAsDataURL(inputImagem.files[0]);
+  } else {
+    salvarExercicio(null);
+  }
 });
 
+// Toggle Sidebar
 btnToggleSidebar.addEventListener("click", () => {
   container.classList.toggle("collapsed");
 });
 
 // Inicialização
 renderMochilas();
-renderMaterias();
+renderExercicios();
