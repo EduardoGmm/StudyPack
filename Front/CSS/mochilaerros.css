@@ -1,0 +1,139 @@
+
+.dark-bg {
+    background-color: #0f1115;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    background-color: #13161b;
+    padding-top: 20px;
+    transition: width .35s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .list-group {
+    flex: 1;
+}
+
+.sidebar.collapsed {
+    width: 70px;
+}
+
+/* Cabeçalho */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 15px;
+}
+
+.sidebar-title {
+    color: #4a8cff;
+    transition: opacity .25s ease;
+}
+.list-group-item{
+    transition: opacity .25s ease;
+}
+
+.sidebar.collapsed .sidebar-title {
+    opacity: 0;
+}
+
+.sidebar.collapsed .list-group-item{
+    opacity: 0;
+}
+
+.sidebar-btn{
+    width: calc(100% - 30px);
+    margin: 0 auto 20px auto;
+    display: block;
+    transition: 
+        opacity .3s ease,
+        transform .3s ease;
+    flex-shrink: 0;
+}
+
+.sidebar.collapsed .sidebar-btn{
+    opacity: 0;
+    transform: translateX(-20px);
+    pointer-events: none;
+}
+
+/* Botão do toggle */
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #4a8cff;
+}
+
+/* Itens da sidebar */
+.list-group-item {
+    background-color: transparent;
+    border: none;
+    color: #cdd3dd;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background .2s ease, padding-left .2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #1b1f27;
+    padding-left: 28px;
+}
+
+/* Conteúdo da direita */
+.main-content {
+    margin-left: 60px;
+    transition: margin-left .35s ease;
+    padding: 25px;
+    position: relative;
+    min-height: 100vh;
+}
+
+.main-content.expanded {
+    margin-left: 270px;
+}
+
+.floating-btn{
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+}
+
+/* Botão moderno */
+.btn-primary {
+    background-color: #1f4fff;
+    border-color: #1f4fff;
+}
+.btn-primary:hover {
+    background-color: #173bcc;
+    border-color: #173bcc;
+}
+
+/* Cards de Exercícios */
+
+.ex-card{
+    background-color: #1b1f27;
+    color: #cdd3dd;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #2a2f38;
+    transition: transform .2s ease, background .2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ex-card:hover {
+    background-color: #222831;
+    transform: translateX(5px);
+}
