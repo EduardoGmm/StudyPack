@@ -23,35 +23,25 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  var carrossel = document.querySelector(".fifith-section .fs-carrossel");
+  const carrossel = document.querySelector(".fifith-section .fs-carrossel");
   if (!carrossel) return;
 
   const slides = Array.from(carrossel.children);
-  let index = 0;
-  let slide = 0;
   const viewer = document.querySelector(".fifith-section .fs-viewer");
   const antBtn = document.querySelector(".fifith-section .fs-btn.ant");
   const proxBtn = document.querySelector(".fifith-section .fs-btn.prox");
 
-  function compute() {
-    const estilo = getComputedStyle(viewer);
-    const peek = parseFloat(estilo.getPropertyValue("--peek")) || 0;
-    const gap = parseFloat(getComputedStyle(carrossel).gap) || 0;
+  let index = 0;
+  let slideWidth = 0;
 
-    const viewerWidth = viewer.clientWidth - peek * 2;
-    viewer.style.setProperty("--slideW", `${viewerWidth}px`);
-    slide = viewerWidth + gap;
-  }
-
-  function setActive(i) {
-    slides.forEach((el, idx) => el.classList.toggle("is-active", idx === i));
+  function computeWidth() {
+    slideWidth = viewer.clientWidth; // cada "slide" ocupa 100% do viewer
   }
 
   function goTo(i) {
     index = (i + slides.length) % slides.length;
-    const x = Math.round(-index * slide);
-    carrossel.style.transform = `translateX(${-index * slide}px)`;
-    setActive(index);
+    const x = -index * slideWidth;
+    carrossel.style.transform = `translateX(${x}px)`;
   }
 
   function prox() {
@@ -62,26 +52,29 @@ document.addEventListener("DOMContentLoaded", function () {
     goTo(index - 1);
   }
 
-  compute();
+  // inicialização
+  computeWidth();
   goTo(0);
 
+  // recalcula no resize
   let rAF;
   window.addEventListener("resize", () => {
     cancelAnimationFrame(rAF);
     rAF = requestAnimationFrame(() => {
       const cur = index;
-      compute();
+      computeWidth();
       goTo(cur);
     });
   });
 
+  // autoplay
   let timer = setInterval(prox, 8000);
   viewer.addEventListener("mouseenter", () => clearInterval(timer));
-  viewer.addEventListener(
-    "mouseleave",
-    () => (timer = setInterval(prox, 8000))
-  );
+  viewer.addEventListener("mouseleave", () => {
+    timer = setInterval(prox, 8000);
+  });
 
-  proxBtn?.addEventListener("click", prox);
+  // botões
   antBtn?.addEventListener("click", ant);
+  proxBtn?.addEventListener("click", prox);
 });
