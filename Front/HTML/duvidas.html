@@ -17,7 +17,8 @@
           <h1 title="title">STUDY PACK</h1>
         </div>
         <div class="first-section-right-container">
-          <a href="mochilaext.html">Mochila de Erros</a>
+          <a href="mochilaerros.html">Mochila de Erros</a>
+          <a href="index.html">Home</a>
           <a href="duvidas.html">Dúvidas</a>
           <a href="sobrenos.html">Sobre nós</a>
           <a href="login.html">Entrar</a>
@@ -25,10 +26,10 @@
       </nav>
       <div class="first-section-content">
         <div class="fs-content">
-          <h1>REDESCUBRA A SUA MANEIRA DE APRENDER</h1>
+          <h1>DÚVIDAS</h1>
           <p>
-            Transforme seus estudos com nossa plataforma inovadora. Organize,
-            revise e aprenda de forma eficiente.
+            O primeiro passo para aprender é exclarecer as suas dúvidas. Aqui na
+            StudyPack, você encontra respostas para todas as suas perguntas.
           </p>
           <div class="provisory">
             <a href="../HTML/login.html" class="btn">COMEÇAR AGORA</a>
@@ -37,6 +38,7 @@
         </div>
       </div>
     </section>
+    <section class="main-sec">
     <main>
       <section class="faq-section">
         <h1 class="titulo">Dúvidas</h1>
@@ -91,14 +93,26 @@
 
       <section class="contato-section">
         <h2 class="titulo">Entre em contato</h2>
-        <form class="contato-form">
-          <input type="text" placeholder="Nome" required />
-          <input type="email" placeholder="Email" required />
-          <input type="text" placeholder="Assunto" required />
-          <textarea placeholder="Mensagem" required></textarea>
+        <form class="contato-form" id="contato-form">
+          <div class="form-content">
+            <input type="text" id="nome" placeholder="Nome" />
+            <small class="error-message"></small>
+          </div>
+          <div class="form-content">
+            <input type="email" id="email" placeholder="Email" />
+            <small class="error-message"></small>
+          </div>
+          <div class="form-content">
+            <input type="text" id="assunto" placeholder="Assunto" />
+            <small class="error-message"></small>
+          </div>
+          <div class="form-content">
+            <textarea id="mensagem" placeholder="Mensagem"></textarea>
+            <small class="error-message"></small>
+          </div>
           <button type="submit">Enviar</button>
         </form>
       </section>
-    </main>
+    <script src="../JS/duvidas.js"></script>
   </body>
 </html>
