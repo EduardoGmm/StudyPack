@@ -90,8 +90,15 @@ h4 {
 }
 
 h1 {
-  font-size: 2rem;
-  line-height: 1.1;
+  font-size: 1.7rem;
+  line-height: 2;
+}
+
+span {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.4;
 }
 
 .preencher {
@@ -209,20 +216,15 @@ h1 {
 
   .content {
     max-width: 280px;
-    gap: 80px;
+    gap: 50px;
   }
 
   .log-up {
     gap: 4px;
   }
 
-  h1 {
-    font-size: 1.5rem;
-    line-height: 1.15;
-  }
-
   .log-up h1 {
-    font-size: 1.95rem;
+    font-size: 1.5rem;
     line-height: 1.35;
   }
 
