@@ -16,9 +16,7 @@
       <div class="content">
         <div class="log-up">
           <h1>Cadastre-se</h1>
-          <span>
-            Entre em um novo mundo de aprendizado com a Study Pack!
-          </span>
+          <span> Entre em um novo mundo de aprendizado com a Study Pack! </span>
         </div>
         <div class="log-down">
           <form action="../../Back/cadastro.php" method="POST" id="form">
@@ -26,6 +24,7 @@
               <input
                 type="text"
                 id="username"
+                name="nome"
                 class="preencher"
                 placeholder="Nome Completo *"
               />
@@ -36,6 +35,7 @@
               <input
                 type="email"
                 id="email"
+                name="email"
                 class="preencher"
                 placeholder="Email *"
               />
@@ -47,6 +47,7 @@
                 type="password"
                 id="password"
                 class="preencher"
+                name="senha"
                 placeholder="Senha *"
               />
               <br />
@@ -66,6 +67,7 @@
               <input
                 type="tel"
                 id="telefone"
+                name="telefone"
                 class="preencher"
                 placeholder="Telefone"
               />
@@ -76,7 +78,7 @@
               <label class="data_nasc" id="date" for=""
                 >Data de Nascimento:</label
               >
-              <input type="date" class="preencher" /> <br />
+              <input type="date" name="data_nasc" class="preencher" /> <br />
               <a>Aqui vai a mensagem de erro...</a>
             </div>
             <fieldset class="sexo-fieldset">

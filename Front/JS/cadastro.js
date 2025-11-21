@@ -20,6 +20,16 @@ form.addEventListener("submit", (event) => {
   }
 });
 
+function formIsValid() {
+  const formItems = document.querySelectorAll(".form-content");
+  for (let item of formItems) {
+    if (item.classList.contains("error")) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function checkInputUsername() {
   const usernameValue = username.value;
 
