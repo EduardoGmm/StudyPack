@@ -15,6 +15,9 @@ form.addEventListener("submit", (event) => {
   checkInputPasswordConfirmation();
   checkInputTelefone();
   checkInputDate();
+  if (formIsValid()) {
+    document.getElementById("form").submit();
+  }
 });
 
 function checkInputUsername() {

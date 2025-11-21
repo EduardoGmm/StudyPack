@@ -137,7 +137,7 @@ main {
   margin: 0 auto;
   background: transparent;
   padding: 32px 16px;
-  margin-top: -50px;
+  margin-top: 5px;
 }
 
 .titulo {
@@ -267,12 +267,138 @@ main {
   color: #26334d;
   margin-top: -4px;
 }
-@media (max-width: 600px) {
+
+@media (max-width: 720px) {
+  nav {
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px 24px; /* muito menor */
+    text-align: center;
+  }
+
+  .first-section-right-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .first-section-right-container a {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .first-section {
+    height: auto;
+    padding-bottom: 40px; 
+  }
+
+  .first-section-content {
+    height: auto; 
+    padding-top: 40px;
+    padding-inline: 12px;
+  }
+
+  .fs-content h1 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .fs-content p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .provisory {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .provisory a {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+
   .faq-list {
     gap: 10px;
   }
   .faq-item summary,
   .faq-item .faq-response {
     padding: 12px;
+  }
+}
+
+footer{
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  width: 100%;
+  height: auto;
+  padding: 70px 0;
+}
+
+.footer-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+
+}
+
+.footer-links{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-links a{
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: .2s;
+}
+
+.footer-links a:hover{
+  color: var(--secondary-color);
+}
+
+.footer-socials a{
+  color: white;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: .2s;
+}
+
+@media (max-width: 720px) {
+  footer {
+    padding: 40px 0;
+  }
+
+  .footer-content{
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links{
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .footer-links a{
+    display: block;
+    width: 100%;
+    max-width: 240px;
+  }
+
+  .footer-socials {
+    margin-top: 12px;
   }
 }
