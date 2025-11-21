@@ -9,14 +9,26 @@ const exerciciosContainer = document.getElementById("exerciciosContainer");
 
 mochilaItems.forEach(item => {
     item.addEventListener("click", () => {
-        const nome = item.dataset.mochila;
+        
+        mochilaItems.forEach(i => i.classList.remove("selected"));
+        item.classList.add("selected");
 
+        const nome = item.dataset.mochila;
         mochilaTitulo.textContent = nome;
 
         exerciciosContainer.innerHTML = `
-            <div class="ex-card">Exercício 1 dessa mochila</div>
-            <div class="ex-card">Exercício 2 dessa mochila</div>
-            <div class="ex-card">Exercício 3 dessa mochila</div>
+            <div class="ex-card">
+                <span><i class="fa-regular fa-file-lines"></i> Exercício 1</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="ex-card">
+                <span><i class="fa-regular fa-file-lines"></i> Exercício 2</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="ex-card">
+                <span><i class="fa-regular fa-file-lines"></i> Exercício 3</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
         `;
     });
 });
