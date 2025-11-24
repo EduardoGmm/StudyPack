@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let slideWidth = 0;
 
   function computeWidth() {
-    slideWidth = viewer.clientWidth; // cada "slide" ocupa 100% do viewer
+    slideWidth = viewer.clientWidth;
   }
 
   function goTo(i) {
@@ -37,11 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
     goTo(index - 1);
   }
 
-  // inicialização
   computeWidth();
   goTo(0);
 
-  // recalcula no resize
   let rAF;
   window.addEventListener("resize", () => {
     cancelAnimationFrame(rAF);
@@ -52,14 +50,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // autoplay
   let timer = setInterval(prox, 8000);
   viewer.addEventListener("mouseenter", () => clearInterval(timer));
   viewer.addEventListener("mouseleave", () => {
     timer = setInterval(prox, 8000);
   });
 
-  // botões
   antBtn?.addEventListener("click", ant);
   proxBtn?.addEventListener("click", prox);
 });
