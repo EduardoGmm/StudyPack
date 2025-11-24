@@ -646,7 +646,7 @@ nav {
 
 .fifith-section {
   width: 100%;
-  min-height: 100vh; /* ocupa a tela cheia */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -660,7 +660,7 @@ nav {
 
 .fs-container {
   width: 100%;
-  max-width: clamp(900px, 70vw, 1200px); /* cresce em monitores grandes */
+  max-width: clamp(900px, 70vw, 1200px);
   margin-inline: auto;
 
   display: flex;
@@ -686,8 +686,6 @@ nav {
   line-height: 1.7;
   color: #e6f2fb;
 }
-
-/* ----- viewer + carrossel ----- */
 
 .fs-viewer {
   position: relative;
@@ -718,8 +716,6 @@ nav {
   padding: clamp(16px, 2vh, 24px);
   box-sizing: border-box;
 }
-
-/* fala card */
 
 .fs-card {
   width: min(900px, 70%);
@@ -767,8 +763,6 @@ nav {
   line-height: 1.7;
   color: #3a4252;
 }
-
-/* ----- navegação ----- */
 
 .fs-nav {
   margin-top: clamp(16px, 2vh, 24px);

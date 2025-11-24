@@ -3,7 +3,6 @@
     background-color: #0f1115;
 }
 
-/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
@@ -27,8 +26,6 @@
 .sidebar.collapsed {
     width: 70px;
 }
-
-/* Cabeçalho */
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -68,15 +65,13 @@
     pointer-events: none;
 }
 
-/* Botão do toggle */
+
 .toggle-btn {
     background: none;
     border: none;
     font-size: 22px;
     color: #4a8cff;
 }
-
-/* Itens da sidebar */
 .list-group-item {
     background-color: transparent;
     border: none;
@@ -97,7 +92,6 @@
     padding-left: 28px;
 }
 
-/* Conteúdo da direita */
 #main .container-fluid {
     max-width: 1000px;
     margin: 0 auto;
@@ -132,7 +126,6 @@
     box-shadow: 0 6px 18px rgba(0,0,0,0.35);
 }
 
-/* Botão moderno */
 .btn-primary {
     background-color: #1f4fff;
     border-color: #1f4fff;
@@ -141,8 +134,6 @@
     background-color: #173bcc;
     border-color: #173bcc;
 }
-
-/* Cards de Exercícios */
 
 .ex-card {
     background-color: #1b1f27;

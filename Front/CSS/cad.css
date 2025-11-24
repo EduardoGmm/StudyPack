@@ -132,7 +132,7 @@ span {
 
 .sexo-segmented {
   display: flex;
-  flex-wrap: wrap; /* permite quebrar linha */
+  flex-wrap: wrap;
   gap: 8px;
   width: 100%;
   max-width: 100%;
