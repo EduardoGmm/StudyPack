@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
         $senhaHash = $usuario['senha'];
 
         if (password_verify($senhaDigitada, $senhaHash)) {
-            header("Location: ../Front/HTML/index.html");
+            header("Location: /StudyPack/StudyPack/Front/HTML/index.html");
             exit();
         } else {
             echo "<h3>Senha incorreta!</h3>";

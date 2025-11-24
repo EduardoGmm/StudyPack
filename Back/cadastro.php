@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES ('$nome', '$email', '$senha', '$telefone', '$data_nasc', '$genero')";
 
    if ($conexao->query($sql)) {
-      header("Location: ../HTML/login.html");
+      header("Location: /StudyPack/StudyPack/Front/HTML/perfil.html");
    } else {
       echo "<span style='color:red;'>ERRO SQL: " . $conexao->error . "</span>";
    }
